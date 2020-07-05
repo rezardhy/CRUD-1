@@ -15,9 +15,11 @@ class CreateJawabanTable extends Migration
     {
         Schema::create('jawaban', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('isi');
+            $table->longText('isi');
             $table->integer('jumlahLike')->nullable();
             $table->integer('jumlahDislike')->nullable();
+            $table->timestamp('tanggal_dibuat')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('tanggal_diperbaharui')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
